@@ -1,0 +1,176 @@
+/* ===== إعدادات عامة ===== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #080b16;
+    color: white;
+    min-height: 100vh;
+}
+
+/* ===== HEADER ===== */
+
+header {
+    background: #11162a;
+    padding: 20px 8%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #00e5ff;
+}
+
+header h1 {
+    color: #00e5ff;
+    font-size: 28px;
+}
+
+nav {
+    display: flex;
+    gap: 25px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+nav a:hover {
+    color: #00e5ff;
+}
+
+/* ===== HERO ===== */
+
+.hero {
+    min-height: 65vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.hero h2 {
+    font-size: 55px;
+    margin-bottom: 15px;
+}
+
+.hero p {
+    color: #b9bfd1;
+    font-size: 20px;
+    margin-bottom: 30px;
+}
+
+.hero button {
+    background: #00e5ff;
+    color: #080b16;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.hero button:hover {
+    transform: scale(1.08);
+    box-shadow: 0 0 25px #00e5ff;
+}
+
+/* ===== JEUX ===== */
+
+#games {
+    padding: 60px 8%;
+    text-align: center;
+}
+
+#games h2 {
+    font-size: 36px;
+    margin-bottom: 35px;
+    color: #00e5ff;
+}
+
+.game-card {
+    display: inline-block;
+    vertical-align: top;
+    width: 280px;
+    min-height: 190px;
+
+    background: #11162a;
+    margin: 15px;
+    padding: 25px;
+
+    border-radius: 18px;
+    border: 1px solid #252c48;
+
+    transition: 0.3s;
+}
+
+.game-card:hover {
+    transform: translateY(-10px);
+    border-color: #00e5ff;
+    box-shadow: 0 10px 30px rgba(0, 229, 255, 0.2);
+}
+
+.game-card h3 {
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+
+.game-card p {
+    color: #aeb5ca;
+    margin-bottom: 20px;
+}
+
+.game-card button {
+    background: #00e5ff;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.game-card button:hover {
+    background: white;
+}
+
+/* ===== FOOTER ===== */
+
+footer {
+    background: #11162a;
+    text-align: center;
+    padding: 25px;
+    color: #777f99;
+    margin-top: 50px;
+}
+
+/* ===== TÉLÉPHONE ===== */
+
+@media (max-width: 700px) {
+
+    header {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    nav {
+        gap: 15px;
+    }
+
+    .hero h2 {
+        font-size: 38px;
+    }
+
+    .game-card {
+        width: 90%;
+    }
+}

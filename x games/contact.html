@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Contact - GameZone</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #0f172a;
+      color: white;
+    }
+
+    header {
+      background: #111827;
+      padding: 20px 8%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 28px;
+      font-weight: bold;
+      color: #38bdf8;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin-left: 25px;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      color: #38bdf8;
+    }
+
+    .contact-section {
+      min-height: 80vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 60px 20px;
+    }
+
+    .contact-box {
+      width: 100%;
+      max-width: 650px;
+      background: #1e293b;
+      padding: 35px;
+      border-radius: 18px;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+    }
+
+    .contact-box h1 {
+      text-align: center;
+      margin-bottom: 10px;
+      font-size: 40px;
+    }
+
+    .contact-box p {
+      text-align: center;
+      color: #94a3b8;
+      margin-bottom: 30px;
+      line-height: 1.6;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: bold;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      padding: 14px;
+      border: none;
+      outline: none;
+      border-radius: 10px;
+      background: #0f172a;
+      color: white;
+      font-size: 16px;
+    }
+
+    textarea {
+      min-height: 150px;
+      resize: vertical;
+    }
+
+    input:focus,
+    textarea:focus {
+      box-shadow: 0 0 0 2px #38bdf8;
+    }
+
+    button {
+      width: 100%;
+      padding: 15px;
+      border: none;
+      border-radius: 10px;
+      background: #38bdf8;
+      color: #0f172a;
+      font-size: 17px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: #0ea5e9;
+      transform: scale(1.02);
+    }
+
+    footer {
+      background: #111827;
+      text-align: center;
+      padding: 25px;
+      color: #94a3b8;
+    }
+
+    @media (max-width: 700px) {
+      header {
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      nav a {
+        margin: 0 7px;
+      }
+
+      .contact-box {
+        padding: 25px;
+      }
+
+      .contact-box h1 {
+        font-size: 32px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+
+  <div class="logo">
+    🎮 GameZone
+  </div>
+
+  <nav>
+    <a href="index.html">Accueil</a>
+    <a href="jeux.html">Jeux</a>
+    <a href="actualites.html">Actualités</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+
+</header>
+
+
+<section class="contact-section">
+
+  <div class="contact-box">
+
+    <h1>📩 Contact</h1>
+
+    <p>
+      Tu as une question, une idée ou un problème ?
+      Envoie-nous un message.
+    </p>
+
+    <form id="contactForm">
+
+      <div class="form-group">
+        <label for="name">Nom</label>
+        <input
+          type="text"
+          id="name"
+          placeholder="Ton nom"
+          required
+        >
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input
+          type="email"
+          id="email"
+          placeholder="exemple@email.com"
+          required
+        >
+      </div>
+
+      <div class="form-group">
+        <label for="message">Message</label>
+        <textarea
+          id="message"
+          placeholder="Écris ton message..."
+          required
+        ></textarea>
+      </div>
+
+      <button type="submit">
+        Envoyer le message
+      </button>
+
+    </form>
+
+  </div>
+
+</section>
+
+
+<footer>
+  © 2026 GameZone - Tous droits réservés
+</footer>
+
+
+<script>
+
+  const form = document.getElementById("contactForm");
+
+  form.addEventListener("submit", function(event) {
+
+    event.preventDefault();
+
+    alert("✅ Ton message a bien été envoyé !");
+
+    form.reset();
+
+  });
+
+</script>
+
+</body>
+</html>
