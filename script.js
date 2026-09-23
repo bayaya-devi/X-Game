@@ -120,7 +120,7 @@
   });
 
   function renderDodgeBoard(board, lane, icon) {
-    board.innerHTML = "";
+    boardElement.innerHTML = "";
     board.forEach(item => {
       const row = document.createElement("div");
       row.className = "x-dodge-row";
