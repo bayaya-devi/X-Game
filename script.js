@@ -188,13 +188,13 @@
     const track = area.querySelector("#runnerTrack");
     const character = area.querySelector("#runnerCharacter");
     const obstacle = area.querySelector("#runnerObstacle");
-    let obstacleIn = 13;
+    let obstacleIn = 20;
     let jumpTicks = 0;
     let score = 0;
     let ended = false;
     const jump = () => {
       if (ended || jumpTicks > 0) return;
-      jumpTicks = 8;
+      jumpTicks = 12;
       character.classList.add("is-jumping");
     };
     const onClick = event => { if (event.target.closest("#jumpButton")) jump(); };
@@ -207,12 +207,12 @@
       if (ended) return;
       obstacleIn--;
       if (jumpTicks > 0 && --jumpTicks === 0) character.classList.remove("is-jumping");
-      obstacle.style.right = Math.max(3, obstacleIn * 6) + "%";
+      obstacle.style.right = ((20 - obstacleIn) * 4) + "%";
       score++;
       setStatus("النقط: " + score);
-      if (obstacleIn <= 0) {
+      if (obstacleIn <= 2) {
         if (jumpTicks > 0) {
-          obstacleIn = 13 + Math.floor(Math.random() * 7);
+          obstacleIn = 20; obstacle.style.right = "0%";
           setMessage("زوين! كمل الجري.");
         } else {
           ended = true;
@@ -442,7 +442,7 @@
       else if(attempts>=5){ended=true;window.clearInterval(timer);setMessage("سالاو المحاولات. عاود وحاول تصيب 3 مرات.");}
     };
     button.addEventListener("click",hit);
-    const key=event=>{if(event.key==="Enter"&&!modal.hidden){event.preventDefault();hit();}};
+    const key=event=>{if(event.code==="Space"&&!modal.hidden&&event.target!==button){event.preventDefault();hit();}};
     const unbind=bindKeys(key);
     return()=>{window.clearInterval(timer);button.removeEventListener("click",hit);unbind();};
   }
