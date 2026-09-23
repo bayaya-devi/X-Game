@@ -401,7 +401,7 @@
     const paint=()=>{
       grid.innerHTML="";
       values.forEach((value,index)=>{
-        const b=document.createElement("button");b.type="button";b.className="x-puzzle-tile";b.textContent=value||"";b.dataset-tile=String(index);b.setAttribute("aria-label",value?String(value):"خانة فارغة");
+        const b=document.createElement("button");b.type="button";b.className="x-puzzle-tile";b.textContent=value||"";b.dataset.tile=String(index);b.setAttribute("aria-label",value?String(value):"خانة فارغة");
         if(!value)b.disabled=true;
         grid.appendChild(b);
       });
