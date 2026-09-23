@@ -297,3 +297,63 @@ body.xhome #games{padding:88px clamp(22px,7vw,112px) 94px;text-align:left}
 body.xhome #games h2{margin:12px 0 0;color:#f1f6f5;font:500 clamp(36px,5vw,58px)/1 "Playfair Display",Georgia,serif;letter-spacing:-.045em}
 body.xhome .x-footer{margin-top:0}
 @media(max-width:650px){body.xhome #games{padding:58px 18px 64px}body.xhome #games h2{font-size:39px}}
+
+
+/* Cartes de jeux et commandes jouables */
+.x-game-features{margin:7px 0 10px!important;color:#88aab0!important;font:7px "DM Mono",monospace!important;letter-spacing:.035em;line-height:1.5!important;text-transform:uppercase}
+.x-play-button{display:inline-flex!important;align-items:center;gap:24px!important;min-width:94px;justify-content:space-between;padding:9px 11px!important;border:1px solid #a5e5ed70!important;background:#a2eaf2!important;color:#081619!important;font:600 9px Inter,sans-serif!important;cursor:pointer!important;transition:transform .2s,box-shadow .2s,background .2s!important}
+.x-play-button span{color:#0b3b45!important;font-size:14px!important}
+.x-play-button:hover{transform:translateY(-2px);background:#d7fbff!important;box-shadow:0 7px 18px #69d3e53d}
+.x-play-modal[hidden]{display:none}
+.x-play-modal{position:fixed;z-index:100;inset:0;display:grid;place-items:center;padding:18px}
+.x-play-backdrop{position:absolute;inset:0;background:#020709d9;backdrop-filter:blur(8px)}
+.x-play-panel{position:relative;width:min(680px,100%);max-height:min(92svh,900px);overflow:auto;padding:clamp(18px,4vw,30px);border:1px solid #98e4ed75;background:linear-gradient(145deg,#11252a,#091216 70%);box-shadow:0 28px 100px #000c;animation:x-modal-in .24s ease both}
+.x-play-header{display:flex;align-items:flex-start;justify-content:space-between;gap:18px;padding:0 0 16px;border:0;border-bottom:1px solid #a9e8ef2b;background:transparent}
+.x-play-header h2{margin:7px 0 0;color:#eff8f7;font:500 clamp(28px,6vw,42px)/1 "Playfair Display",Georgia,serif}
+.x-play-close{display:grid;place-items:center;width:38px;height:38px;border:1px solid #a4e6ed66;background:#0b181c;color:#e4f5f5;font:300 26px/1 Inter,sans-serif;cursor:pointer}
+.x-play-close:hover{background:#20434b}
+.x-play-instructions{margin:14px 0;color:#b5c9cb;font-size:12px;line-height:1.6}
+.x-play-area{display:grid;place-items:center;min-height:270px;padding:17px;border:1px solid #9cdfe52e;background:radial-gradient(ellipse at 50% 20%,#17363c,#091216 72%)}
+.x-play-footer{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:13px;color:#83a1a6;font:9px "DM Mono",monospace}
+.x-play-footer button,.x-control-button{min-height:38px;padding:9px 13px;border:1px solid #9de3eb68;background:#112329;color:#e5f5f5;font:10px Inter,sans-serif;cursor:pointer;transition:background .2s,border-color .2s,transform .2s}
+.x-play-footer button:hover,.x-control-button:hover{transform:translateY(-1px);border-color:#a9eff6;background:#20434b}
+.x-game-status{width:100%;margin:0 0 12px;color:#9be6ed;font:11px "DM Mono",monospace;text-align:center}
+.x-game-message{min-height:21px;margin:10px 0 0;color:#d8e8e8;font-size:12px;text-align:center}
+.x-control-row{display:flex;justify-content:center;gap:9px;margin-top:12px}
+.x-dodge-wrap{width:min(320px,100%)}
+.x-dodge-board{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;min-height:205px;padding:8px;border:1px solid #7edce641;background:#071013}
+.x-dodge-row,.x-dodge-car-row{display:grid;grid-template-columns:repeat(3,1fr);gap:3px}
+.x-dodge-cell{display:grid;place-items:center;min-height:25px;border:1px solid #a5e3e80c;color:#a9edf2;font-size:15px}
+.x-dodge-cell.has-obstacle{background:#21404a8c;color:#e7c58a}
+.x-dodge-car-row .x-dodge-cell{min-height:37px;border-color:#a1eaf249;background:#14303a;color:#aff3f6;font-size:20px}
+.x-runner-track{position:relative;width:min(480px,100%);height:145px;overflow:hidden;border:1px solid #83dce650;background:linear-gradient(#10252a,#0a161a)}
+.x-runner-track::before{position:absolute;right:0;bottom:26px;left:0;height:1px;content:"";background:#a2e5e95e}
+.x-runner-character{position:absolute;bottom:27px;left:18%;display:grid;place-items:center;width:34px;height:40px;color:#b5eea1;font-size:25px;transition:bottom .12s}
+.x-runner-character.is-jumping{bottom:80px}
+.x-runner-obstacle{position:absolute;right:8%;bottom:27px;width:20px;height:25px;background:#e3bd75;box-shadow:0 0 18px #d6a94777;animation:x-obstacle-in 1.6s linear infinite}
+.x-runner-track.is-ended .x-runner-obstacle{animation-play-state:paused}
+.x-memory-grid{display:grid;grid-template-columns:repeat(4,minmax(46px,68px));gap:8px;max-width:300px}
+.x-memory-card{display:grid;place-items:center;aspect-ratio:1;border:1px solid #82dfdf6b;background:#142c2e;color:#98ebe2;font:600 23px "DM Mono",monospace;cursor:pointer;transition:transform .2s,background .2s}
+.x-memory-card:hover{transform:translateY(-2px);background:#1e4240}
+.x-memory-card.is-open,.x-memory-card.is-matched{background:#24473e;color:#d8ecad}
+.x-memory-card.is-matched{opacity:.6;cursor:default}
+.x-snake-wrap{width:min(340px,100%);text-align:center}
+.x-snake-canvas{display:block;width:min(300px,100%);height:auto;margin:auto;border:1px solid #8add9c5c;background:#07130d;image-rendering:pixelated}
+.x-puzzle-grid,.x-morpion-grid{display:grid;grid-template-columns:repeat(3,minmax(62px,86px));gap:6px}
+.x-puzzle-tile,.x-morpion-cell{display:grid;place-items:center;aspect-ratio:1;border:1px solid #8de0e878;background:#142d33;color:#e9f8f6;font:500 25px "DM Mono",monospace;cursor:pointer;transition:background .18s,transform .18s}
+.x-puzzle-tile:hover:not(:disabled),.x-morpion-cell:hover:not(:disabled){transform:translateY(-2px);background:#20505a}
+.x-puzzle-tile:disabled{border-color:transparent;background:transparent;cursor:default}
+.x-morpion-cell{color:#a9edf1;font-size:31px}
+.x-morpion-cell.is-o{color:#e0c98b}
+.x-sprint-wrap{width:min(430px,100%);text-align:center}
+.x-sprint-label{margin:0 0 20px;color:#c5d7d7;font-size:12px}
+.x-sprint-track{position:relative;height:42px;overflow:hidden;border:1px solid #9adfe875;background:#081114}
+.x-sprint-target{position:absolute;top:0;bottom:0;left:38%;width:24%;border-inline:1px solid #a4eda7;background:#a3e6a62b}
+.x-sprint-marker{position:absolute;top:0;bottom:0;left:0;width:4px;background:#f3d281;box-shadow:0 0 14px #f5d486;transform:translateX(0)}
+.x-sprint-wrap .x-control-button{margin-top:17px;min-width:130px;background:#a2eaf2;color:#09171a;font-weight:700}
+.x-sprint-wrap .x-control-button:hover{background:#d7fbff}
+.x-sprint-progress{margin:13px 0 0;color:#91dce5;font:10px "DM Mono",monospace}
+@keyframes x-modal-in{from{opacity:0;transform:translateY(10px) scale(.985)}to{opacity:1;transform:none}}
+@keyframes x-obstacle-in{from{right:-8%}to{right:100%}}
+@media(max-width:520px){.x-play-modal{padding:9px}.x-play-panel{max-height:96svh;padding:16px}.x-play-area{min-height:245px;padding:10px}.x-dodge-board{min-height:185px}.x-play-footer{align-items:flex-start;font-size:8px}.x-play-footer button,.x-control-button{min-height:42px}.x-sprint-track{height:48px}}
+@media(prefers-reduced-motion:reduce){.x-play-panel{animation:none}.x-runner-obstacle{animation-duration:3s}}
