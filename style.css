@@ -357,3 +357,6 @@ body.xhome .x-footer{margin-top:0}
 @keyframes x-obstacle-in{from{right:-8%}to{right:100%}}
 @media(max-width:520px){.x-play-modal{padding:9px}.x-play-panel{max-height:96svh;padding:16px}.x-play-area{min-height:245px;padding:10px}.x-dodge-board{min-height:185px}.x-play-footer{align-items:flex-start;font-size:8px}.x-play-footer button,.x-control-button{min-height:42px}.x-sprint-track{height:48px}}
 @media(prefers-reduced-motion:reduce){.x-play-panel{animation:none}.x-runner-obstacle{animation-duration:3s}}
+
+/* Le déplacement du bloc est piloté par le jeu et fonctionne aussi au clavier. */
+.x-runner-obstacle{animation:none!important}
