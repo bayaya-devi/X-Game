@@ -52,6 +52,12 @@
     }
   };
 
+  Object.assign(gameInfo, {
+    "tap-target": { title:"Tap Target", instructions:"ضغط على الهدف وجمع أكبر عدد فـ 20 ثانية.", hint:"ضغط أو لمس الهدف" },
+    "rps-arena": { title:"RPS Arena", instructions:"اختار حجر ولا ورقة ولا مقص. أول واحد لـ 3 كيربح.", hint:"اختار واحد من الأزرار" },
+    "secret-number": { title:"Secret Number", instructions:"خمن رقم من 1 حتى 20 فـ 5 محاولات.", hint:"دخل الرقم وجرب" },
+    "color-rush": { title:"Color Rush", instructions:"حفظ ترتيب الألوان وعاودو.", hint:"ضغط على الألوان بالترتيب" }
+  });
   function stopGame() {
     cleanupGame();
     cleanupGame = () => {};
@@ -102,7 +108,11 @@
       "space-escape": renderSpaceEscape,
       "morpion-x": renderMorpion,
       "puzzle-lab": renderPuzzle,
-      "skyline-sprint": renderSkyline
+      "skyline-sprint": renderSkyline,
+      "tap-target": renderTapTarget,
+      "rps-arena": renderRps,
+      "secret-number": renderSecretNumber,
+      "color-rush": renderColorRush
     };
     cleanupGame = (renderers[activeGame] || (() => () => {}))();
   }
@@ -447,3 +457,7 @@
     return()=>{window.clearInterval(timer);button.removeEventListener("click",hit);unbind();};
   }
 })();
+  function renderTapTarget(){area.innerHTML='<div class="x-tap-wrap"><p class="x-game-status">النقط: 0 · الوقت: 20ث</p><div class="x-tap-field"><button class="x-tap-dot" type="button">◎</button></div><p class="x-game-message">ضغط على الهدف باش تبدا!</p></div>';const dot=area.querySelector(".x-tap-dot");let score=0,time=20,started=false,ended=false,a,b;const place=()=>{dot.style.left=(8+Math.random()*76)+"%";dot.style.top=(8+Math.random()*76)+"%"};const hit=()=>{if(ended)return;if(!started){started=true;setMessage("يلا جمع أكبر عدد!");a=setInterval(place,720);b=setInterval(()=>{time--;setStatus("النقط: "+score+" · الوقت: "+time+"ث");if(!time){ended=true;clearInterval(a);clearInterval(b);setMessage("سالاو 20 ثانية! النتيجة: "+score);}},1000)}score++;setStatus("النقط: "+score+" · الوقت: "+time+"ث");place()};dot.addEventListener("click",hit);return()=>{clearInterval(a);clearInterval(b);dot.removeEventListener("click",hit)}}
+  function renderRps(){area.innerHTML='<div class="x-rps-wrap"><p class="x-game-status">نتيجتك: 0 · الكمبيوتر: 0</p><div class="x-rps-choices"><button data-rps="rock">✊ حجر</button><button data-rps="paper">✋ ورقة</button><button data-rps="scissors">✌ مقص</button></div><p class="x-rps-result">اختار الحركة ديالك.</p><p class="x-game-message">اللعب حتى لـ 3 نقاط.</p></div>';let you=0,pc=0,end=false;const opts=["rock","paper","scissors"],lab={rock:"حجر",paper:"ورقة",scissors:"مقص"};const click=e=>{const b=e.target.closest("[data-rps]");if(!b||end)return;const m=b.dataset.rps,c=opts[Math.random()*3|0];let s;if(m===c)s="تعادل — بجوج اخترتو "+lab[m];else if((m==="rock"&&c==="scissors")||(m==="paper"&&c==="rock")||(m==="scissors"&&c==="paper")){you++;s="ربحتي الجولة! نتا: "+lab[m]+" · الكمبيوتر: "+lab[c]}else{pc++;s="الكمبيوتر ربح الجولة. نتا: "+lab[m]+" · الكمبيوتر: "+lab[c]}area.querySelector(".x-rps-result").textContent=s;setStatus("نتيجتك: "+you+" · الكمبيوتر: "+pc);if(you===3||pc===3){end=true;setMessage(you===3?"ربحتي المواجهة! 🎉":"الكمبيوتر ربح. عاود!");}};area.addEventListener("click",click);return()=>area.removeEventListener("click",click)}
+  function renderSecretNumber(){const secret=1+(Math.random()*20|0);area.innerHTML='<div class="x-number-wrap"><p class="x-game-status">المحاولات: 0/5</p><form class="x-number-form"><input class="x-number-input" type="number" min="1" max="20" placeholder="1–20" aria-label="خمن الرقم"><button>جرّب</button></form><p class="x-number-feedback">دخل تخمينك.</p><p class="x-game-message">عندك 5 محاولات.</p></div>';const f=area.querySelector("form"),input=area.querySelector("input");let n=0,end=false;const submit=e=>{e.preventDefault();if(end)return;const g=Number(input.value);if(!Number.isInteger(g)||g<1||g>20){area.querySelector(".x-number-feedback").textContent="دخل رقم بين 1 و20.";return}n++;setStatus("المحاولات: "+n+"/5");if(g===secret){end=true;area.querySelector(".x-number-feedback").textContent="صحيح! الرقم هو "+secret;setMessage("لقيتيه فـ "+n+" محاولة! 🎉")}else if(n===5){end=true;area.querySelector(".x-number-feedback").textContent="الرقم كان "+secret;setMessage("سالاو المحاولات. عاود وحاول.")}else area.querySelector(".x-number-feedback").textContent=g<secret?"الرقم أكبر ↑":"الرقم أصغر ↓";input.value=""};f.addEventListener("submit",submit);return()=>f.removeEventListener("submit",submit)}
+  function renderColorRush(){area.innerHTML='<div class="x-color-wrap"><p class="x-game-status">المستوى: 1</p><div class="x-color-grid"><button data-color="0" aria-label="أزرق"></button><button data-color="1" aria-label="وردي"></button><button data-color="2" aria-label="أخضر"></button><button data-color="3" aria-label="ذهبي"></button></div><button class="x-color-start">بدا الجولة</button><p class="x-game-message">حفظ الترتيب وعاودو.</p></div>';const pads=[...area.querySelectorAll("[data-color]")],start=area.querySelector(".x-color-start");let seq=[],idx=0,show=false,level=0,timers=[];const flash=async()=>{show=true;idx=0;setMessage("تفرج مزيان...");await new Promise(r=>timers.push(setTimeout(r,350)));for(const n of seq){pads[n].classList.add("is-lit");await new Promise(r=>timers.push(setTimeout(r,400)));pads[n].classList.remove("is-lit");await new Promise(r=>timers.push(setTimeout(r,150)))}show=false;setMessage("دابا عاود نفس الترتيب.")};const next=()=>{level++;seq.push(Math.random()*4|0);setStatus("المستوى: "+level);flash()};const begin=()=>{if(show)return;level=0;seq=[];next()};const click=e=>{const b=e.target.closest("[data-color]");if(!b||show||!seq.length)return;const n=+b.dataset.color;b.classList.add("is-lit");timers.push(setTimeout(()=>b.classList.remove("is-lit"),140));if(n!==seq[idx]){setMessage("غلطتي فالمستوى "+level+". بدا جولة جديدة.");seq=[];return}idx++;if(idx===seq.length){setMessage("زوين! المستوى الجاي.");show=true;timers.push(setTimeout(()=>{show=false;next()},500))}};start.addEventListener("click",begin);area.addEventListener("click",click);return()=>{timers.forEach(clearTimeout);start.removeEventListener("click",begin);area.removeEventListener("click",click)}}
